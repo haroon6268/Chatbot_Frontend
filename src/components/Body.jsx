@@ -1,34 +1,41 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 const Body = ({ messages, setMessages }) => {
-  useEffect(() => {}, [messages]);
-
+  let divEnd = useRef(null);
+  useEffect(() => {
+    divEnd.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
   return (
-    <div className="flex-auto  w-full mx-auto overflow-auto m-5">
-      <div className="h-full overflow-auto px-[10%] flex flex-col">
+    <div className="flex-1 max-h-full w-full mx-auto overflow-auto m-4">
+      <div className="px-[10%] flex flex-col">
         {messages.map((x, i) => {
-          return (
-            <div
-              className={`flex ${
-                x.type == "user" ? "justify-start" : "justify-end"
-              } pt-5`}
-            >
-              {x.type == "user" ? (
-                <div className="w-[35rem] bg-gray-600 h-fit p-3 rounded-2xl">
-                  <p className="text-white">Subject: {x.data.subject}</p>
-                  <p className="text-white">Body: {x.data.body}</p>
-                  <p className="text-white">Sender: {x.data.sender}</p>
-                </div>
-              ) : (
-                <div className="w-[35rem] bg-gray-600 h-fit p-3 rounded-2xl">
-                  <p className="text-white whitespace-pre-line">{x.data}</p>
-                </div>
-              )}
+          return x.type == "user" ? (
+            <div className="chat chat-end" key={i}>
+              <div className="chat-header">You</div>
+              <div className="chat-bubble chat-bubble-primary max-w-[45%]">
+                Subject: {x.data.subject}
+                <br />
+                Body: {x.data.body}
+                <br />
+                Sender: {x.data.sender}
+              </div>
+            </div>
+          ) : (
+            <div className="chat chat-start">
+              <div className="chat-header">PhishGuard🛡️</div>
+              <div className="chat-bubble chat-bubble-secondary max-w-[45%]">
+                {x.data}
+              </div>
             </div>
           );
         })}
+        <div ref={divEnd} />
       </div>
     </div>
   );
 };
 
 export default Body;
+
+/**
+ *
+ */
