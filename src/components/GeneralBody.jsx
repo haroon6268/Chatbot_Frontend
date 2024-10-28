@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-const Body = ({ messages, setMessages }) => {
+const GeneralBody = ({ messages, setMessages }) => {
 	let divEnd = useRef(null);
 	useEffect(() => {
 		divEnd.current?.scrollIntoView({ behavior: "smooth" });
@@ -15,16 +15,12 @@ const Body = ({ messages, setMessages }) => {
 								className="chat-bubble chat-bubble-primary max-w-[45%]"
 								style={{ whiteSpace: "pre-wrap" }}
 							>
-								Subject: {x.data.subject}
-								<br />
-								Body: {x.data.body}
-								<br />
-								Sender: {x.data.sender}
+								{x.data.body}
 							</div>
 						</div>
 					) : (
 						<div className="chat chat-start" key={i}>
-							<div className="chat-header">PhishGuard🛡️</div>
+							<div className="chat-header">CyberGuard🛡️</div>
 							<div
 								className="chat-bubble chat-bubble-secondary max-w-[45%]"
 								style={{ whiteSpace: "pre-wrap" }}
@@ -40,7 +36,7 @@ const Body = ({ messages, setMessages }) => {
 	);
 };
 
-export default Body;
+export default GeneralBody;
 
 /**
  *

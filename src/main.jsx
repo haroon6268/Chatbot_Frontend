@@ -8,27 +8,32 @@ import MainPage from "./components/MainPage.jsx";
 import Phishing from "./components/Phishing.jsx";
 import Layout from "./components/Layout.jsx";
 import NotFound from "./components/NotFound.jsx";
+import General from "./components/General.jsx";
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Layout />,
-    errorElement: <NotFound />,
-    children: [
-      {
-        path: "/phishing",
-        element: <Phishing />,
-      },
-      {
-        path: "/",
-        element: <MainPage />,
-      },
-    ],
-  },
+	{
+		path: "/",
+		element: <Layout />,
+		errorElement: <NotFound />,
+		children: [
+			{
+				path: "/phishing",
+				element: <Phishing />,
+			},
+			{
+				path: "/",
+				element: <MainPage />,
+			},
+			{
+				path: "/general",
+				element: <General />,
+			},
+		],
+	},
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <RouterProvider router={router} />
-  </StrictMode>
+	<StrictMode>
+		<RouterProvider router={router} />
+	</StrictMode>
 );
