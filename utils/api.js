@@ -10,7 +10,7 @@ const devUrl = "http://127.0.0.1:5000/";
 const prodUrl = "https://chat-bot-backend-haroon6268s-projects.vercel.app/";
 export const postData = (data, endPoint = "") => {
 	return axios
-		.post(devUrl + endPoint, data, config)
+		.post(prodUrl + endPoint, data, config)
 		.then((res) => res)
 		.catch((err) => err);
 };
